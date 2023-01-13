@@ -1,0 +1,47 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: matic
+    source:
+      address: "0xD6ae3F2750D8Adaaa4395347618D3152507aC5D6"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AirdropFunded
+        - ApprovalForAll
+        - Claimed
+        - ContractURISet
+        - Initialized
+        - MerkleRootSet
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: AirdropFunded(address)
+          handler: handleAirdropFunded
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Claimed(indexed address)
+          handler: handleClaimed
+        - event: ContractURISet(indexed string)
+          handler: handleContractURISet
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: MerkleRootSet(bytes32)
+          handler: handleMerkleRootSet
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/contract.ts
