@@ -8,20 +8,13 @@ dataSources:
     source:
       address: "0xD6ae3F2750D8Adaaa4395347618D3152507aC5D6"
       abi: Contract
+      startBlock: 35236845
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AirdropFunded
-        - ApprovalForAll
-        - Claimed
-        - ContractURISet
-        - Initialized
-        - MerkleRootSet
-        - TransferBatch
-        - TransferSingle
-        - URI
+        - Claimer
       abis:
         - name: Contract
           file: ./abis/Contract.json
